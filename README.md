@@ -1,169 +1,118 @@
-# TypeScript DevContainer Workspace
+# 🧑‍💻 Codespace - Development Environment
 
-[![GitHub stars](https://img.shields.io/github/stars/Ealenn/codespaces-typescript?style=for-the-badge)](https://github.com/Ealenn/codespaces-typescript/stargazers)
-[![Docker Image Version (latest semver)](https://img.shields.io/docker/v/ealen/codespaces-typescript?color=blue&style=for-the-badge)](https://hub.docker.com/r/ealen/codespaces-typescript/tags)
-[![Docker Pulls](https://img.shields.io/docker/pulls/ealen/codespaces-typescript?style=for-the-badge)](https://hub.docker.com/r/ealen/codespaces-typescript/tags)
+[![GitHub stars](https://img.shields.io/github/stars/Ealenn/codespaces?style=for-the-badge)](https://github.com/Ealenn/codespaces/stargazers)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ealen/codespaces?style=for-the-badge)](https://hub.docker.com/r/ealen/codespaces)
 
-![](./vscode.png)
+> A modern developer-friendly environment optimized for containers, VS Code Remote Containers, and GitHub Codespaces.
 
-The Visual [Studio Code Remote Containers extension](https://code.visualstudio.com/docs/remote/containers) lets you use a Docker container as a full-featured development environment. It allows you to open any folder inside (or mounted into) a container and take advantage of Visual Studio Code's full feature set. 
+## 📦 Environment
 
-A `devcontainer.json` file in your project tells VS Code how to access a development container with a well-defined tool and runtime stack. This container can be used to run an application or to separate tools, libraries, or runtimes needed for working with a codebase.
+- **Base:** [Ubuntu 24.04](https://hub.docker.com/_/ubuntu)
 
-[More information](https://code.visualstudio.com/docs/remote/containers)
+### 🖥 Terminal
+  - [ZSH](https://www.zsh.org/) & [Oh-My-ZSH](https://github.com/ohmyzsh/ohmyzsh) Zsh is a shell designed for interactive use, although it is also a powerful scripting language.
+  - [Starship](https://starship.rs/) The minimal, blazing-fast, and infinitely customizable prompt for any shell!
+  - [LSD](https://github.com/Peltoche/lsd) Colorizes the ls output with color and icons.
+  - [TheFuck](https://github.com/nvbn/thefuck#installation) The Fuck is a magnificent app, that corrects errors in previous console commands.
+  - [JQ](https://github.com/stedolan/jq) jq is a lightweight and flexible command-line JSON processor.
+  - [fd-find](https://github.com/sharkdp/fd) A simple, fast and user-friendly alternative to 'find'
 
-> Table of contents
+### 🔧 Tools
+  - [Vim](https://www.vim.org/) Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient.
+  - [NeoVim](https://github.com/neovim/neovim) Vim-fork focused on extensibility and usability
+    - [ecosse3/nvim](https://github.com/ecosse3/nvim) A non-minimal Neovim config built to work most efficiently with Frontend Development
+- But also `git`, `gpg`, `curl`, `wget`, etc.
 
-- [TypeScript DevContainer Workspace](#typescript-devcontainer-workspace)
-- [Dev-Container](#dev-container)
-  - [How to use](#how-to-use)
-    - [Environment](#environment)
-    - [CLI](#cli)
-    - [Libs](#libs)
-    - [Essential](#essential)
-    - [Others](#others)
-  - [How to customize](#how-to-customize)
-- [VSCode Extensions](#vscode-extensions)
-  - [TypeScript](#typescript)
-  - [Files](#files)
-  - [Global](#global)
-  - [Front](#front)
-  - [Theme](#theme)
-  - [Docker](#docker)
+### 🧑‍💻 Languages & Runtimes
+- [Go](https://go.dev) A simple, fast, and reliable language designed for scalable and efficient software development.
+- [Rust](https://www.rust-lang.org) A language empowering everyone to build reliable and efficient software.
+- [NVM](https://github.com/nvm-sh/nvm) with [Node LTS](https://nodejs.dev/) installed by default. NVM is a version manager for NodeJS.
+- [ZX](https://github.com/google/zx) Bash is great, but when it comes to writing scripts, people usually choose a more convenient programming language.
+- [Python3](https://www.python.org) Python is a programming language that lets you work quickly and integrate systems more effectively.
+  - [UV](https://github.com/astral-sh/uv) An extremely fast Python package and project manager, written in Rust.
 
-# Dev-Container
+### 🐳 Docker-in-Docker
+- Full Docker CLI and Compose support inside container
+- `docker.sock` ready for volume mount
 
-## How to use
+## 💡 Remote Containers (VS Code)
 
-In your project, create `.devcontainer/devcontainer.json` [[?]](https://aka.ms/devcontainer.json) : 
+![Remote Container](./vscode.png)
 
-``` js
+This image is compatible with [VS Code Remote Containers](https://code.visualstudio.com/docs/remote/containers), enabling a full development experience using a containerized environment.
+
+### Example `.devcontainer/devcontainer.json`:
+
+```json
 {
-  "name": "TypeScript",
-  "image": "ealen/codespaces-typescript",
-
+  "name": "codespaces",
+  "image": "ealen/codespaces",
   "extensions": [
-    // TypeScript
+    "golang.go",
     "dbaeumer.vscode-eslint",
     "oouo-diogo-perdigao.docthis",
-    // Files
     "bungcip.better-toml",
+    "redhat.vscode-yaml",
     "yzhang.markdown-all-in-one",
-    // Global
     "editorconfig.editorconfig",
     "gruntfuggly.todo-tree",
     "eamodio.gitlens",
-    // Front
     "naumovs.color-highlight",
-    "octref.vetur",
-    // Theme
     "vscode-icons-team.vscode-icons",
-    // Docker
     "ms-azuretools.vscode-docker"
   ],
-
   "settings": {
-    "eslint.alwaysShowStatus": true,
     "workbench.iconTheme": "vscode-icons",
     "editor.fontFamily": "Consolas, 'Courier New', monospace, hack, 'Hack Nerd Font Mono'",
     "terminal.integrated.fontFamily": "Consolas, 'Hack Nerd Font Mono'",
-    "terminal.integrated.fontSize": 14
+    "terminal.integrated.fontSize": 14,
+    "files.autoSave": "onFocusChange",
+    "editor.tabSize": 2,
+    "eslint.format.enable": true,
   },
-
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
-
-  // Uncomment the next line to run commands after the container is created - for example installing curl.
-  // "postCreateCommand": "npm ci", // You can also use ZX script or MAKE command
-
   "mounts": [
-    "source=/home/ealen/.ssh,target=/home/user/.ssh,type=bind,readonly",
-    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" 
+    "source=/home/YOUR_USER/.ssh,target=/home/ubuntu/.ssh,type=bind,readonly",
+    "source=/home/YOUR_USER/.gnupg,target=/home/ubuntu/.gnupg,type=bind,readonly",
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
   ]
 }
 ```
 
-An example is available [here](./example).
+> 💡 You must install a Nerd Font such as [Hack Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf)
 
-> /!\ You must install Nerd Font "[Hack Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf)" /!\
+# 🐋 Raw Docker Usage
 
-### Environment 
+![NVIM](./nvim.png)
 
-Based on [Ubuntu 22.04](https://hub.docker.com/_/ubuntu) __
+You can run the image without VS Code using standard Docker commands.
 
-- [ZSH](https://www.zsh.org/) & [Oh-My-ZSH](https://github.com/ohmyzsh/ohmyzsh) Zsh is a shell designed for interactive use, although it is also a powerful scripting language.
-- [Starship](https://starship.rs/) The minimal, blazing-fast, and infinitely customizable prompt for any shell!
-- [LSD](https://github.com/Peltoche/lsd) Colorizes the ls output with color and icons.
+**Example**: Run with persistent volumes and access to Docker
 
-### CLI
-
-- [Vim](https://www.vim.org/) Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient.
-- [TheFuck](https://github.com/nvbn/thefuck#installation) The Fuck is a magnificent app, that corrects errors in previous console commands.
-- [JQ](https://github.com/stedolan/jq) jq is a lightweight and flexible command-line JSON processor.
-- [gi](https://github.com/Ealenn/gi-gitignore-generator) CLI to generate .gitignore or .gitignore_global files
-- [ZX](https://github.com/google/zx) Bash is great, but when it comes to writing scripts, people usually choose a more convenient programming language.
-
-### Libs
-
-- [Docker](https://www.docker.com/) & [Docker-Compose](https://docs.docker.com/compose/) Lets you run Docker within Docker.
-- [NVM](https://github.com/nvm-sh/nvm) with [Node LTS](https://nodejs.dev/) installed by default. NVM is a version manager for NodeJS.
-- [Python3](https://www.python.org) Python is a programming language that lets you work quickly and integrate systems more effectively.
-
-### Essential
-
-- [Git](https://git-scm.com/) Git is a free and open source distributed version control system.
-- [Curl](https://curl.se/) Command line tool for transferring data with URLs.
-- [Wget](https://www.gnu.org/software/wget/) GNU Wget is a free software package for retrieving files using HTTP, HTTPS, FTP and FTPS.
-
-### Others
-
-- [ca-certificates](https://packages.debian.org/en/sid/ca-certificates) Contains the certificate authorities shipped with Mozilla's browser to allow SSL-based applications to check for the authenticity of SSL connections.
-- [gnupg](https://packages.debian.org/en/sid/gnupg) GnuPG is GNU's tool for secure communication and data storage.
-
-## How to customize
-
-Create `.devcontainer/Dockerfile` and extend this codespace :
-
-```dockerfile
-FROM ealen/codespaces-typescript
-
-# Add your changes
+```sh
+docker run -it --rm \
+  -v ~/.ssh:/home/ubuntu/.ssh:ro \
+  -v ~/.gnupg:/home/ubuntu/.gnupg:ro \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v $(pwd):/workspace \
+  -e PUID=$(id -u) \
+  -e PGID=$(id -g) \
+  -w /workspace \
+  ealen/codespaces
 ```
 
-Update your `.devcontainer/decontainer.json` to build your custom image :
+> You can now launch nvim from inside the container, and work on your project directly from the mounted volume.
 
-```js
-{
-  "name": "TypeScript",
-  "build": {
-    "context": ".",
-    "dockerfile": "./Dockerfile"
-  }
-  ...
-}
-```
+# 💻 GitHub Codespaces Support
 
-# VSCode Extensions
+This image is fully compatible with [GitHub Codespaces](https://docs.github.com/en/codespaces)!
 
-## TypeScript
-- [dbaeumer.vscode-eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) Integrates ESLint JavaScript into VS Code.
-- [oouo-diogo-perdigao.docthis](https://marketplace.visualstudio.com/items?itemName=oouo-diogo-perdigao.docthis) Automatically generates detailed JSDoc comments in TypeScript and JavaScript files.
+To use:
+1. Create a .devcontainer/devcontainer.json in your repo (as shown above).
+2. Push to GitHub.
+3. Open the repo in Codespaces.
 
-## Files
-- [bungcip.better-toml](https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml) Better TOML Language support
-- [yzhang.markdown-all-in-one](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) All you need to write Markdown 
+That's it! You'll get a fully functional container with Docker, ZSH, Starship, Go, Rust, Node, and Python already configured.
 
-## Global
-- [editorconfig.editorconfig](https://marketplace.visualstudio.com/items?itemName=editorconfig.editorconfig) EditorConfig Support for Visual Studio Code
-- [gruntfuggly.todo-tree](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree) Show TODO, FIXME, etc. comment tags in a tree view
-- [eamodio.gitlens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) Supercharge the Git capabilities built into Visual Studio Code
+# 📁 Example Repo
 
-## Front
-- [naumovs.color-highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight) Highlight web colors in your editor
-- [octref.vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) Vue tooling for VS Code
-
-## Theme
-- [vscode-icons-team.vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons) Icons for Visual Studio Code
-
-## Docker
-- [ms-azuretools.vscode-docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) Makes it easy to create, manage, and debug containerized applications.
+You can find a working example inside the [example/](/example/) folder.

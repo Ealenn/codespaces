@@ -1,33 +1,40 @@
 {
-  "name": "TypeScript",
-  "image": "ealen/codespaces-typescript",
-  "extensions": [
-    // TypeScript
-    "dbaeumer.vscode-eslint",
-    "oouo-diogo-perdigao.docthis",
-    // Files
-    "yzhang.markdown-all-in-one",
-    // Global
-    "editorconfig.editorconfig",
-    "gruntfuggly.todo-tree",
-    // Theme
-    "vscode-icons-team.vscode-icons",
-    // Docker
-    "ms-azuretools.vscode-docker"
+  "name": "codespaces",
+  "image": "ealen/codespaces",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "oouo-diogo-perdigao.docthis",
+        "bungcip.better-toml",
+        "redhat.vscode-yaml",
+        "yzhang.markdown-all-in-one",
+        "editorconfig.editorconfig",
+        "gruntfuggly.todo-tree",
+        "eamodio.gitlens",
+        "naumovs.color-highlight",
+        "vscode-icons-team.vscode-icons",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "eslint.alwaysShowStatus": true,
+        "workbench.iconTheme": "vscode-icons",
+        "editor.fontFamily": "Consolas, 'Courier New', monospace, 'Hack Nerd Font Mono'",
+        "terminal.integrated.fontFamily": "Consolas, 'Hack Nerd Font Mono'",
+        "terminal.integrated.fontSize": 14
+      },
+    }
+  },
+
+  "forwardPorts": [
+    8080
   ],
 
-  "settings": {
-    "eslint.alwaysShowStatus": true,
-    "workbench.iconTheme": "vscode-icons",
-    "editor.fontFamily": "Consolas, 'Courier New', monospace, 'Hack Nerd Font Mono'",
-    "terminal.integrated.fontFamily": "Consolas, 'Hack Nerd Font Mono'",
-    "terminal.integrated.fontSize": 14
-  },
-  "forwardPorts": [ 8080 ],
   "postCreateCommand": "npm ci",
 
   "mounts": [
     "source=/home/ealen/.ssh,target=/home/user/.ssh,type=bind,readonly",
+    "source=/home/ealen/.gnupg,target=/home/user/.gnupg,type=bind,readonly",
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
   ]
 }

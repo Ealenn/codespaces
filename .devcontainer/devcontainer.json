@@ -14,35 +14,38 @@
     }
   },
 
-  // Set *default* container specific settings.json values on container create.
-  "settings": {
-    "eslint.alwaysShowStatus": true,
-    "workbench.iconTheme": "vscode-icons",
-    "editor.fontFamily": "Consolas, 'Courier New', monospace, 'Hack Nerd Font Mono'",
-    "terminal.integrated.fontFamily": "Consolas, 'Hack Nerd Font Mono'",
-    "terminal.integrated.fontSize": 14
+  "customizations": {
+    "vscode": {
+      // Set *default* container specific settings.json values on container create.
+      "settings": {
+        "eslint.alwaysShowStatus": true,
+        "workbench.iconTheme": "vscode-icons",
+        "editor.fontFamily": "Consolas, 'Courier New', monospace, 'Hack Nerd Font Mono'",
+        "terminal.integrated.fontFamily": "Consolas, 'Hack Nerd Font Mono'",
+        "terminal.integrated.fontSize": 14
+      },
+        // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        // TypeScript
+        "dbaeumer.vscode-eslint",
+        "oouo-diogo-perdigao.docthis",
+        // Files
+        "bungcip.better-toml",
+        "yzhang.markdown-all-in-one",
+        // Global
+        "editorconfig.editorconfig",
+        "gruntfuggly.todo-tree",
+        "eamodio.gitlens",
+        // Front
+        "naumovs.color-highlight",
+        "octref.vetur",
+        // Theme
+        "vscode-icons-team.vscode-icons",
+        // Docker
+        "ms-azuretools.vscode-docker"
+      ]
+    }
   },
-
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    // TypeScript
-    "dbaeumer.vscode-eslint",
-    "oouo-diogo-perdigao.docthis",
-    // Files
-    "bungcip.better-toml",
-    "yzhang.markdown-all-in-one",
-    // Global
-    "editorconfig.editorconfig",
-    "gruntfuggly.todo-tree",
-    "eamodio.gitlens",
-    // Front
-    "naumovs.color-highlight",
-    "octref.vetur",
-    // Theme
-    "vscode-icons-team.vscode-icons",
-    // Docker
-    "ms-azuretools.vscode-docker"
-  ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
