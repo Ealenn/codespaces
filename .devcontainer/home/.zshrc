@@ -38,6 +38,10 @@ alias ls='lsd -A'
 alias ll='lsd -lA'
 alias lt='lsd --tree'
 
+# LazyDocker & LazyGit
+alias ldocker='lazydocker'
+alias lgit='lazygit'
+
 # TheFuck
 eval $(thefuck --alias)
 

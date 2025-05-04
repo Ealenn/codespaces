@@ -130,6 +130,12 @@ RUN git clone --dept 1 https://github.com/ecosse3/nvim.git $HOME/.config/nvim
 RUN nvim --headless -c 'Lazy sync' -c 'qa'
 
 # ------------------------------
+# LazyDocker & LazyGit
+# ------------------------------
+RUN curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+RUN apt install lazygit
+
+# ------------------------------
 # Clean
 # ------------------------------
 RUN apt autoremove \

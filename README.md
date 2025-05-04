@@ -21,6 +21,7 @@
   - [Vim](https://www.vim.org/) Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient.
   - [NeoVim](https://github.com/neovim/neovim) Vim-fork focused on extensibility and usability
     - [ecosse3/nvim](https://github.com/ecosse3/nvim) A non-minimal Neovim config built to work most efficiently with Frontend Development
+  - [LazyDocker](https://github.com/jesseduffield/lazydocker) & [LazyGit](https://github.com/jesseduffield/lazygit) The lazier way to manage everything in docker or git
 - But also `git`, `gpg`, `curl`, `wget`, etc.
 
 ### 🧑‍💻 Languages & Runtimes
