@@ -102,6 +102,20 @@ docker run -it --rm \
 
 > You can now launch nvim from inside the container, and work on your project directly from the mounted volume.
 
+💡 **Note**: The Codespaces Docker image is also available on GitHub Container Registry.
+ 
+If your company restricts access to docker.io, you can use the GitHub-hosted image instead by replacing `ealen/codespaces` with `ghcr.io/ealenn/codespaces`.
+
+```sh
+alias codespaces='docker run -it --rm \
+  -v "$HOME/.ssh:/home/ubuntu/.ssh:ro" \
+  -v "$HOME/.gnupg:/home/ubuntu/.gnupg:ro" \
+  -v "/var/run/docker.sock:/var/run/docker.sock" \
+  -v "$PWD:/workspace" \
+  -w /workspace \
+  ghcr.io/ealenn/codespaces'
+```
+
 # 💻 GitHub Codespaces Support
 
 This image is fully compatible with [GitHub Codespaces](https://docs.github.com/en/codespaces)!
