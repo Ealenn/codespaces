@@ -1,10 +1,3 @@
-export LC_ALL=$LOCAL
-export LANG=$LOCAL
-
-export HISTSIZE=10000
-export SAVEHIST=10000
-
-export HISTFILE=~/.zsh_history
 export EDITOR=vim
 
 # PATH
@@ -17,7 +10,9 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # Oh-My-ZSH
+export ZSH="$HOME/.oh-my-zsh"
 plugins=(sudo aliases git docker docker-compose node nvm npm)
+source $ZSH/oh-my-zsh.sh
 
 # Python
 echo 'eval "$(uv generate-shell-completion zsh)"' >> ~/.zshrc
